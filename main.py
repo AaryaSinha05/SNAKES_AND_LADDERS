@@ -81,7 +81,6 @@ def player_mode():
 def cvp_game():
     #pasting snake and ladder image in the screen
     image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
-
     arrow_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\arrow.png").convert_alpha()
     arrow_button = button.button(110, 350, arrow_image, 1)
 
@@ -107,10 +106,10 @@ def cvp_game():
                 if arrow_button.draw(screen):
                     img = dice_roll()
                     imageplacement(img, 100, 250)
+                    pygame.display.update()
+                    time.sleep(1.0)
                 
-        
         pygame.display.update()
-        time.sleep(1.3)
 
 def pvp_game():
     #pasting snake and ladder image in the screen
@@ -143,9 +142,10 @@ def pvp_game():
                 if arrow_button.draw(screen):
                     img = dice_roll()
                     imageplacement(img, 100, 250)
+                    pygame.display.update()
+                    time.sleep(1.0)
         
         pygame.display.update()
-        time.sleep(1.3)
 
 start_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\—Pngtree—play button candy blue_5306396.png").convert_alpha()
 start_button = button.button(390, 300, start_image, 1)

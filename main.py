@@ -20,8 +20,6 @@ position = {
 def snakes_check(position):
     new_position_dict = {44 : 22, 46 : 5, 48 : 9, 52 : 11, 55 : 7, 59 : 17, 64 : 36, 69 : 39, 73 : 1, 83 : 19, 92 : 51, 95 : 24, 98 : 28}
     if position in new_position_dict:
-        print("OPPS! There is a snake.")
-        print()
         return new_position_dict[position]
     else:
         return position
@@ -29,8 +27,6 @@ def snakes_check(position):
 def ladders_check(position):
     new_position_dict = {8 : 26, 21 : 82, 43 : 77, 50 : 91, 54 : 93, 62 : 96, 66 : 87, 80 : 100}
     if position in new_position_dict:
-        print("COOL! There is a ladder.")
-        print()
         return new_position_dict[position]
     else:
         return position

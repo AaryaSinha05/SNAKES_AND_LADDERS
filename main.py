@@ -35,22 +35,22 @@ def ladders_check(position):
 def dice_roll():
     dice_number = random.randint(1,6)
     if dice_number == 1:
-        dice_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\ONE_dice.png")
+        dice_image = pygame.image.load(r"./ONE_dice.png")
         return dice_image,dice_number
     elif dice_number == 2:
-        dice_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\two_dice.png")
+        dice_image = pygame.image.load(r"./two_dice.png")
         return dice_image,dice_number
     elif dice_number == 3:
-        dice_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\three_dice.png")
+        dice_image = pygame.image.load(r"./three_dice.png")
         return dice_image,dice_number
     elif dice_number == 4:
-        dice_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\four_dice.png")
+        dice_image = pygame.image.load(r"./four_dice.png")
         return dice_image,dice_number
     elif dice_number == 5:
-        dice_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\five_dice.png")
+        dice_image = pygame.image.load(r"./five_dice.png")
         return dice_image,dice_number
     elif dice_number == 6:
-        dice_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\six_dice.png")
+        dice_image = pygame.image.load(r"./six_dice.png")
         return dice_image,dice_number
 
 #intiating the game
@@ -60,11 +60,11 @@ pygame.init()
 screen = pygame.display.set_mode((1050, 600))
 
 #setting the background
-background = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\bkg.png")
+background = pygame.image.load(r"./bkg.png")
 
 #title, logo for the window
 pygame.display.set_caption("Snakes and Ladders")
-icon = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\snake-and-ladder.png")
+icon = pygame.image.load(r"./snake-and-ladder.png")
 pygame.display.set_icon(icon)
 
 #write the text on the screen
@@ -77,9 +77,9 @@ def imageplacement(image, imageX, imageY):
     screen.blit(image, (imageX, imageY))
 
 def player_mode():
-    cvp_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\computer_vs_player.png").convert_alpha()
+    cvp_image = pygame.image.load(r"./computer_vs_player.png").convert_alpha()
     cvp_button = button.button(290, 300, cvp_image, 1)
-    pvp_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\player_vs_player.png").convert_alpha()
+    pvp_image = pygame.image.load(r"./player_vs_player.png").convert_alpha()
     pvp_button = button.button(540, 300, pvp_image, 1)
     running = True
 
@@ -112,8 +112,8 @@ def turn_b():
 
 def cvp_game():
     #pasting snake and ladder image in the screen
-    image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
-    arrow_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\arrow.png").convert_alpha()
+    image = pygame.image.load(r"./desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
+    arrow_image = pygame.image.load(r"./arrow.png").convert_alpha()
     arrow_button = button.button(110, 350, arrow_image, 1)
 
     running = True
@@ -128,9 +128,9 @@ def cvp_game():
         screen.blit(background,(0,0))
         imageplacement(image, 307, 0)
         draw_text(" Player Blue ", pygame.font.SysFont("times new roman", 30), (0,0,255), 50, 140)
-        imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (4).png"), bx,by)
+        imageplacement(pygame.image.load(r"./player (4).png"), bx,by)
         draw_text(" Computer ", pygame.font.SysFont("times new roman", 30), (255,0,0), 50, 50)
-        imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx,ry)
+        imageplacement(pygame.image.load(r"./player (2).png"), rx,ry)
         
 
         if turn == "blue":
@@ -145,18 +145,18 @@ def cvp_game():
             c_position_r += d_num
             if c_position_r in position:
                 rx,ry = position[c_position_r][0], position[c_position_r][1]
-                imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx, ry)
+                imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                 pygame.display.update()
 
                 if snakes_check(c_position_r) != c_position_r:
                     c_position_r = snakes_check(c_position_r)
                     rx,ry = position[c_position_r][0], position[c_position_r][1]
-                    imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx, ry)
+                    imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                     pygame.display.update()
                 if ladders_check(c_position_r) != c_position_r:
                     c_position_r = ladders_check(c_position_r)
                     rx,ry = position[c_position_r][0], position[c_position_r][1]
-                    imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx, ry)
+                    imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                     pygame.display.update()
             if c_position_r >= 100:
                 draw_text(" COMPUTER IS THE WINNER ", pygame.font.SysFont("times new roman", 40), (255,255,255), 150, 230)
@@ -181,18 +181,18 @@ def cvp_game():
                     c_position_b += d_num
                     if c_position_b in position:
                         bx,by = position[c_position_b][0], position[c_position_b][1]
-                        imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (4).png"), bx, by)
+                        imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                         pygame.display.update()
 
                         if snakes_check(c_position_b) != c_position_b:
                             c_position_b = snakes_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
                             pygame.display.update()
                         if ladders_check(c_position_b) != c_position_b:
                             c_position_b = ladders_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
                             pygame.display.update()
                 if c_position_b >= 100 :
                     draw_text(" PLAYER BLUE IS THE WINNER  ", pygame.font.SysFont("times new roman", 40), (255,255,255), 150, 230)
@@ -204,10 +204,10 @@ def cvp_game():
 
 def pvp_game():
     #pasting snake and ladder image in the screen
-    image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
+    image = pygame.image.load(r"./desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
     imageX = 307
     imageY = 0
-    arrow_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\arrow.png").convert_alpha()
+    arrow_image = pygame.image.load(r"./arrow.png").convert_alpha()
     arrow_button = button.button(110, 350, arrow_image, 1)
 
     running = True
@@ -223,9 +223,9 @@ def pvp_game():
         screen.blit(background,(0,0))
         imageplacement(image, imageX, imageY)
         draw_text(" Player Blue ", pygame.font.SysFont("times new roman", 30), (0,0,255), 50, 140)
-        imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (4).png"), bx,by)
+        imageplacement(pygame.image.load(r"./player (4).png"), bx,by)
         draw_text(" Player Red ", pygame.font.SysFont("times new roman", 30), (255,0,0), 50, 50)
-        imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx,ry)
+        imageplacement(pygame.image.load(r"./player (2).png"), rx,ry)
 
         arrow_button.draw(screen)
 
@@ -252,18 +252,18 @@ def pvp_game():
                     c_position_r += d_num
                     if c_position_r in position:
                         rx,ry = position[c_position_r][0], position[c_position_r][1]
-                        imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx, ry)
+                        imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                         pygame.display.update()
 
                         if snakes_check(c_position_r) != c_position_r:
                             c_position_r = snakes_check(c_position_r)
                             rx,ry = position[c_position_r][0], position[c_position_r][1]
-                            imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx, ry)
+                            imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                             pygame.display.update()
                         if ladders_check(c_position_r) != c_position_r:
                             c_position_r = ladders_check(c_position_r)
                             rx,ry = position[c_position_r][0], position[c_position_r][1]
-                            imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), rx, ry)
+                            imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                             pygame.display.update()
 
 
@@ -272,18 +272,18 @@ def pvp_game():
                     c_position_b += d_num
                     if c_position_b in position:
                         bx,by = position[c_position_b][0], position[c_position_b][1]
-                        imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (4).png"), bx, by)
+                        imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                         pygame.display.update()
 
                         if snakes_check(c_position_b) != c_position_b:
                             c_position_b = snakes_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
                             pygame.display.update()
                         if ladders_check(c_position_b) != c_position_b:
                             c_position_b = ladders_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"snakes_and_ladders_game\player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
                             pygame.display.update()
                             
                 if c_position_b >= 100 or c_position_r >= 100:
@@ -300,7 +300,7 @@ def pvp_game():
                     running = False
         pygame.display.update()
 
-start_image = pygame.image.load(r"C:\Users\yoges\Desktop\Aarya Program\Python\snakes_and_ladders_game\—Pngtree—play button candy blue_5306396.png").convert_alpha()
+start_image = pygame.image.load(r"./—Pngtree—play button candy blue_5306396.png").convert_alpha()
 start_button = button.button(390, 300, start_image, 1)
 
 #variables font and text color for main menu

@@ -4,6 +4,7 @@ import sys
 import button
 import time
 
+#this is a dictionary that contain x-axis and y-axis values for the player coins
 position = {
             1 : (340, 510), 2 : (395, 510), 3 : (445, 510), 4 : (498, 510), 5 : (550, 510), 6 : (603,510), 7 : (655, 510), 8 : (707, 510), 9 : (760, 510), 10 : (814, 510),
             11 : (814, 455), 12 : (760, 455), 13 : (707, 455), 14 : (655,455), 15 : (603,455), 16 : (550, 455), 17 : (498, 455), 18 : (445, 455), 19 : (395, 455), 20 : (340, 455), 
@@ -17,6 +18,7 @@ position = {
             91 : (814, 33), 92 : (760, 33), 93 : (707, 33), 94 : (655, 33), 95 : (603, 33), 96 : (550, 33), 97 : (498, 33), 98 : (445, 33), 99 : (395, 33), 100 : (340, 33), 
             }
 
+#the followig two functions checks for ladders or snakes
 def snakes_check(position):
     new_position_dict = {44 : 22, 46 : 5, 48 : 9, 52 : 11, 55 : 7, 59 : 17, 64 : 36, 69 : 39, 73 : 1, 83 : 19, 92 : 51, 95 : 24, 98 : 28}
     if position in new_position_dict:
@@ -76,6 +78,8 @@ def draw_text(text, font, text_color, x, y):
 def imageplacement(image, imageX, imageY):
     screen.blit(image, (imageX, imageY))
 
+#after the "PLAY" button is pressed, this fuction is called
+#this function contains mode selection for the player
 def player_mode():
     cvp_image = pygame.image.load(r"./computer_vs_player.png").convert_alpha()
     cvp_button = button.button(290, 300, cvp_image, 1)
@@ -103,13 +107,15 @@ def player_mode():
                 if pvp_button.draw(screen):
                     pvp_game()
         pygame.display.update()
-  
+
+#the following two functions displays texts ont he screen 
 def turn_r():
     draw_text(" Your turn ", pygame.font.SysFont("comicsansms", 26), (255,255,255), 60, 80)
 
 def turn_b():
     draw_text(" Your turn ", pygame.font.SysFont("comicsansms", 26), (0,0,0), 60, 170)
 
+#computer vs player mode
 def cvp_game():
     #pasting snake and ladder image in the screen
     image = pygame.image.load(r"./desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
@@ -202,6 +208,7 @@ def cvp_game():
                     running = False
         pygame.display.update()
 
+#player vs player mode
 def pvp_game():
     #pasting snake and ladder image in the screen
     image = pygame.image.load(r"./desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
@@ -242,7 +249,6 @@ def pvp_game():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if arrow_button.draw(screen):
                     img,d_num = dice_roll()
-                    print(d_num)
                     imageplacement(img, 100, 250)
                     pygame.display.update()
                     time.sleep(1.3)

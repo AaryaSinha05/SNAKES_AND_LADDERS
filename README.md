@@ -22,7 +22,7 @@ Snakes and Ladders is a simple and exciting game. Snake and ladders game is base
 2. Run the `main.py` file:
 
     ```
-    python nain.py
+    python main.py
     ```
 
 3. Follow the on-screen instructions to play the game.

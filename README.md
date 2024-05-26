@@ -34,3 +34,6 @@ Snakes and Ladders is a simple and exciting game. Snake and ladders game is base
 1. Python
 2. pygame module
 3. random module
+
+
+Here, Snakes_and_ladders.py is the console version of snakes and ladders game.

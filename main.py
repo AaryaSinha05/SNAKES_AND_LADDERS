@@ -35,25 +35,17 @@ def ladders_check(position):
 
 #function for getting a random number between 1-6
 def dice_roll():
-    dice_number = random.randint(1,6)
-    if dice_number == 1:
-        dice_image = pygame.image.load(r"./ONE_dice.png")
-        return dice_image,dice_number
-    elif dice_number == 2:
-        dice_image = pygame.image.load(r"./two_dice.png")
-        return dice_image,dice_number
-    elif dice_number == 3:
-        dice_image = pygame.image.load(r"./three_dice.png")
-        return dice_image,dice_number
-    elif dice_number == 4:
-        dice_image = pygame.image.load(r"./four_dice.png")
-        return dice_image,dice_number
-    elif dice_number == 5:
-        dice_image = pygame.image.load(r"./five_dice.png")
-        return dice_image,dice_number
-    elif dice_number == 6:
-        dice_image = pygame.image.load(r"./six_dice.png")
-        return dice_image,dice_number
+    dice_images = {
+        1: r"./ONE_dice.png",
+        2: r"./two_dice.png",
+        3: r"./three_dice.png",
+        4: r"./four_dice.png",
+        5: r"./five_dice.png",
+        6: r"./six_dice.png",
+    }
+    dice_number = random.randint(1, 6)
+    dice_image = pygame.image.load(dice_images[dice_number])
+    return dice_image, dice_number
 
 #intiating the game
 pygame.init()
@@ -117,6 +109,7 @@ def turn_b():
 
 #computer vs player mode
 def cvp_game():
+
     #pasting snake and ladder image in the screen
     image = pygame.image.load(r"./desktop-wallpaper-4-snakes-and-ladders-game-and-snake-and-ladder.png")
     arrow_image = pygame.image.load(r"./arrow.png").convert_alpha()
@@ -142,6 +135,7 @@ def cvp_game():
         if turn == "blue":
             turn_b()
             arrow_button.draw(screen)
+
         else:
             turn = "blue"
             img,d_num = dice_roll()
@@ -149,7 +143,9 @@ def cvp_game():
             pygame.display.update()
             time.sleep(1.0)
             c_position_r += d_num
+
             if c_position_r in position:
+
                 rx,ry = position[c_position_r][0], position[c_position_r][1]
                 imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                 pygame.display.update()
@@ -159,23 +155,29 @@ def cvp_game():
                     rx,ry = position[c_position_r][0], position[c_position_r][1]
                     imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                     pygame.display.update()
+
                 if ladders_check(c_position_r) != c_position_r:
                     c_position_r = ladders_check(c_position_r)
                     rx,ry = position[c_position_r][0], position[c_position_r][1]
                     imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                     pygame.display.update()
+
             if c_position_r >= 100:
-                draw_text(" COMPUTER IS THE WINNER ", pygame.font.SysFont("times new roman", 40), (255,255,255), 150, 230)
+                draw_text(" COMPUTER IS THE WINNER ", pygame.font.SysFont("times new roman", 40), (0,0,0), 150, 230)
                 pygame.display.update()
                 print("COMPUTER is the winner....")
-                time.sleep(2.3)
+                time.sleep(2.0)
+                running = False
             
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
                 sys.exit()
+
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 if arrow_button.draw(screen) and turn == "blue":
                     img,d_num = dice_roll()
                     imageplacement(img, 100, 250)
@@ -185,7 +187,9 @@ def cvp_game():
                 if img != "" and turn == "blue":
                     turn = "red"
                     c_position_b += d_num
+
                     if c_position_b in position:
+
                         bx,by = position[c_position_b][0], position[c_position_b][1]
                         imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                         pygame.display.update()
@@ -193,19 +197,22 @@ def cvp_game():
                         if snakes_check(c_position_b) != c_position_b:
                             c_position_b = snakes_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                             pygame.display.update()
+
                         if ladders_check(c_position_b) != c_position_b:
                             c_position_b = ladders_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                             pygame.display.update()
+
                 if c_position_b >= 100 :
-                    draw_text(" PLAYER BLUE IS THE WINNER  ", pygame.font.SysFont("times new roman", 40), (255,255,255), 150, 230)
+                    draw_text(" PLAYER BLUE IS THE WINNER  ", pygame.font.SysFont("times new roman", 40), (0,0,0), 150, 230)
                     pygame.display.update()
                     print("PLAYER BLUE is the winner....")
-                    time.sleep(2.3)
+                    time.sleep(2.0)
                     running = False
+
         pygame.display.update()
 
 #player vs player mode
@@ -242,11 +249,14 @@ def pvp_game():
             turn_b()
 
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
                 sys.exit()
+
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 if arrow_button.draw(screen):
                     img,d_num = dice_roll()
                     imageplacement(img, 100, 250)
@@ -254,8 +264,10 @@ def pvp_game():
                     time.sleep(1.3)
 
                 if img != "" and turn == "red":
+
                     turn = "blue"
                     c_position_r += d_num
+
                     if c_position_r in position:
                         rx,ry = position[c_position_r][0], position[c_position_r][1]
                         imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
@@ -266,6 +278,7 @@ def pvp_game():
                             rx,ry = position[c_position_r][0], position[c_position_r][1]
                             imageplacement(pygame.image.load(r"./player (2).png"), rx, ry)
                             pygame.display.update()
+
                         if ladders_check(c_position_r) != c_position_r:
                             c_position_r = ladders_check(c_position_r)
                             rx,ry = position[c_position_r][0], position[c_position_r][1]
@@ -274,9 +287,12 @@ def pvp_game():
 
 
                 elif img != "" and turn == "blue":
+
                     turn = "red"
                     c_position_b += d_num
+
                     if c_position_b in position:
+
                         bx,by = position[c_position_b][0], position[c_position_b][1]
                         imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                         pygame.display.update()
@@ -284,28 +300,33 @@ def pvp_game():
                         if snakes_check(c_position_b) != c_position_b:
                             c_position_b = snakes_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                             pygame.display.update()
+
                         if ladders_check(c_position_b) != c_position_b:
                             c_position_b = ladders_check(c_position_b)
                             bx,by = position[c_position_b][0], position[c_position_b][1]
-                            imageplacement(pygame.image.load(r"./player (2).png"), bx, by)
+                            imageplacement(pygame.image.load(r"./player (4).png"), bx, by)
                             pygame.display.update()
                             
                 if c_position_b >= 100 or c_position_r >= 100:
+
                     if c_position_r >= 100:
                         draw_text(" PLAYER RED IS THE WINNER ", pygame.font.SysFont("times new roman", 40), (255,255,255), 150, 230)
                         pygame.display.update()
                         print("PLAYER RED is the winner....")
-                        time.sleep(2.3)
+                        time.sleep(2.0)
                     else:
                         draw_text(" PLAYER BLUE IS THE WINNER  ", pygame.font.SysFont("times new roman", 40), (255,255,255), 150, 230)
                         pygame.display.update()
                         print("PLAYER BLUE is the winner....")
-                        time.sleep(2.3)
+                        time.sleep(2.0)
+
                     running = False
+
         pygame.display.update()
 
+#main program
 start_image = pygame.image.load(r"./—Pngtree—play button candy blue_5306396.png").convert_alpha()
 start_button = button.button(390, 300, start_image, 1)
 
@@ -324,9 +345,12 @@ while running:
     start_button.draw(screen)
 
     for event in pygame.event.get():
+
         if event.type == pygame.QUIT:
             running = False
+
         if event.type == pygame.MOUSEBUTTONDOWN:
+
             if start_button.draw(screen):
                 player_mode()
     
